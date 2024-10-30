@@ -1,0 +1,119 @@
+.register-form {
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    border: 3px solid rgb(233, 232, 232);
+    align-items: center;
+    justify-content: center;
+}
+
+.register-header {
+    text-align: center;
+    color: rgb(211, 52, 52);
+    margin-bottom: 20px;
+
+}
+
+.form-control {
+    background-color: transparent;
+    border: none;
+    color: rgb(3, 3, 3);
+}
+
+.form-control:focus {
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+    padding-left: 0;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: rgb(105, 244, 181);
+    cursor: pointer;
+}
+
+.checkbox-text {
+    color: rgb(31, 31, 30);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.custom-eye-icon {
+    position:absolute;
+    top: 70%;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.checkbox-text input[type="checkbox"]:checked{
+    border-color: white;
+    background-color: rgb(26, 116, 201);
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.register-link {
+    color: rgb(35, 33, 33);
+    text-decoration: none;
+    &:hover {           
+        text-decoration: underline;
+      }
+}
+
+.register-button {
+    background: linear-gradient(to right, #b33535, rgb(255, 0, 0));
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 20px;
+    border: none;
+}
+
+.divider {
+    height: 1px;
+    background-color: rgb(28, 21, 21);
+    /*      background-color: rgb(105, 244, 181)*/
+    margin: 20px;
+}
+
+.divider-nospace{
+    border-top: 1px solid rgb(193, 188, 188);
+}
+
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(3, 3, 3, 0.4);
+    opacity: 1;
+    /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(3, 3, 3, 0.4);;
+}
+
+.form-control::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(3, 3, 3, 0.4);;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh;
+}

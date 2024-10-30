@@ -1,0 +1,90 @@
+<app-header></app-header>
+<div class="container">
+    <div class="intro-section">
+        <h1>Review your bag.</h1>
+        <p>Free delivery and free returns.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="product-header">Personal information</h2>
+            <form action="">
+                <div class="md-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="md-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="md-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+                <div class="md-3">
+                    <label for="text" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2 class="product-order">Your Lists :</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MA7E4_AV2?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1723930328743" alt="images" class="product-image">
+                                <span class="product-name">iPhone 16 Pro Clear Case with MagSafe</span>
+                            </div>
+                        </td>
+                        <td>1</td>
+                        <td>$49.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MUW33?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1712255584823" alt="images" class="product-image">
+                                <span class="product-name">Beats Solo 4 — On-Ear Wireless Headphones – Cloud Pink</span>
+                            </div>
+                        </td>
+                        <td>1</td>
+                        <td>$49.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td></td>
+                        <td>$98.00</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td></td>
+                        <td>FREE</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="mt-3">
+                <h4 class="product-header"></h4>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Coupon">
+                    <button class="btn btn-gadient" type="button">Apply</button>
+                </div>
+            </div>
+            <div class="text-start mt-3">
+                <h4 class="header-text text-end">Total:$98.00</h4>
+            </div>
+            <div class="text-start mt-3">
+                <button class="btn btn-warning" type="button">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
