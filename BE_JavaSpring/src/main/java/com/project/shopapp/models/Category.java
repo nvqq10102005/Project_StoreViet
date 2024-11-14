@@ -21,12 +21,4 @@ public class Category {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Category{id=" + id + ", name='" + name + "'}";
-    }
 }

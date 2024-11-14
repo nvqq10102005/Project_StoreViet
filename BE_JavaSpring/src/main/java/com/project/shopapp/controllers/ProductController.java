@@ -29,10 +29,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${api.prefix}/products")
@@ -118,7 +116,9 @@ public class ProductController {
                         .contentType(MediaType.IMAGE_JPEG)
                         .body(resource);
             } else {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(new UrlResource(Paths.get("uploads/notfound.jpg").toUri()));
             }
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
@@ -150,11 +150,13 @@ public class ProductController {
 
     @GetMapping("")
     public ResponseEntity<ProductListResponse> getProducts(
-            @RequestParam("page")     int page,
-            @RequestParam("limit")    int limit
+            @RequestParam(defaultValue = "") String keyword,
+            @RequestParam(defaultValue = "0" , name ="category_id") Long categoryId,
+            @RequestParam(defaultValue = "0")     int page,
+            @RequestParam(defaultValue = "10")    int limit
     ) {
         PageRequest pageRequest = PageRequest.of(page,limit,Sort.by("id").ascending());
-        Page <ProductResponse> productPage = productService.getAllProducts(pageRequest);
+        Page <ProductResponse> productPage = productService.getAllProducts(keyword,categoryId,pageRequest);
 
         int totalPages = productPage.getTotalPages();
         List<ProductResponse> products = productPage.getContent();
@@ -183,6 +185,21 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
+    }
+
+    @GetMapping("/by-ids")
+    public ResponseEntity<?> getProductsByIds(@RequestParam("ids") String ids) {
+        //eg: 1,3,5,7
+        try {
+            // Tách chuỗi ids thành một mảng các số nguyên
+            List<Long> productIds = Arrays.stream(ids.split(","))
+                    .map(Long::parseLong)
+                    .collect(Collectors.toList());
+            List<Product> products = productService.findProductsByIds(productIds);
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     @PostMapping("/generateFakeProducts")
     private ResponseEntity<String> generateFakeProducts(){
