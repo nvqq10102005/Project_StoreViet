@@ -312,6 +312,7 @@ public class WebSecurityConfig {
 
                             .requestMatchers(GET,
                                     String.format("%s/products**", apiPrefix)).permitAll()
+
                             .requestMatchers(GET,
                                     String.format("%s/products/**",apiPrefix)).permitAll()
 
@@ -328,7 +329,7 @@ public class WebSecurityConfig {
                                     String.format("%s/products/**", apiPrefix)).hasAnyRole(Role.ADMIN)
 
                             .requestMatchers(POST,
-                                    String.format("%s/products/uploads/**", apiPrefix)).hasRole(Role.ADMIN)
+                                    String.format("%s/products/uploads**", apiPrefix)).permitAll()
 
 
                             .requestMatchers(POST,
@@ -374,6 +375,8 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
+
 }
 
 
