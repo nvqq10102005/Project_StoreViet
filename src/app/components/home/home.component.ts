@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { response } from 'express';
 import { environment } from '../../environment/environment';
-import { error } from 'console';
+import { ProductService } from '../../service/product.service';
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  thumbnail: string;
+  description: string;
+  category_id: number;
+  url?: string; // URL của ảnh có thể được thêm vào sau khi tải từ API
+}
  @Component({
    selector: 'app-home',
    standalone: true,
@@ -19,6 +27,8 @@ export class HomeComponent implements OnInit{
   totalPages: number = 0;
   visiblePages: number[]=[];
 
+  
+
   constructor(private productService: ProductService){}
 
   ngOnInit(){
@@ -30,7 +40,7 @@ export class HomeComponent implements OnInit{
       next: (response: any) => {
         debugger
         response.product.forEach((product : Product) =>{
-          product.url = `${environment.apiBaseUrl}/products/images${product.thumbnail}`;
+          product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
         });
         this.products = response.products;
         this.totalPages = response.totalPages;
@@ -43,7 +53,27 @@ export class HomeComponent implements OnInit{
         debugger;
         console.error('Error fetching products',error);
       }
-    })
+    });
   }
+  onPageChange(page: number){
+    debugger;
+    this.currentPage = page;
+    this.getProducts(this.currentPage, this.itemsPerPage);
+  }
+
+  generateVisiblePageArray(currentPage:number,totalPages:number):number[]{
+    const maxVisiblePages = 5;
+    const halfVisiblePages = Math.floor(maxVisiblePages/2);
+    
+    let startPage = Math.max(currentPage-halfVisiblePages,1);
+    let endPage = Math.min(startPage+maxVisiblePages-1,totalPages);
+
+    if(endPage - startPage + 1 < maxVisiblePages){
+      startPage = Math.max(endPage- maxVisiblePages+1,1);
+    }
+
+    return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
+  }
+
 }
 
